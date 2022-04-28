@@ -40,7 +40,16 @@ const forwardRenderCharactersByFilter = async () => {
 findBtn.addEventListener('click', forwardRenderCharactersByFilter);
 
 const getCharacters  = (сharacterNameInput = '') => {
+  const url = `https://my-got-api.herokuapp.com/${сharacterNameInput}`;
+  const heroes = [];
+  fetch(url)
+    .then(responce => responce.json())
+    .then(data => {
+      for(const hero of data) {
+        heroes.push(hero);
+      }
+    });
   // todo: implement this method
   // endpoint - `https://my-got-api.herokuapp.com/${сharacterNameInput}`;
-  return [];
+  return Promise.resolve(heroes);
 }
